@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/matches"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Matches" />
+
+    <item
+        android:id="@+id/groups"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Groups" />
+    <item
+        android:id="@+id/qualifications"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Qualifications" />
+    <item
+        android:id="@+id/stadiums"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Stadiums" />
+    <item
+        android:id="@+id/chat"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Chat with organizers" />
+    <item
+        android:id="@+id/booking"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Booking Trains" />
+    <item
+        android:id="@+id/send"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Send Suggestions" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Settings" />
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="About" />
+
+</menu>
