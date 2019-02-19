@@ -1,10 +1,16 @@
 
 package com.example.myapplication.POJO.Matches;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Lineup {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Lineup  implements Parcelable {
 
     @SerializedName("home")
     @Expose
@@ -12,6 +18,22 @@ public class Lineup {
     @SerializedName("away")
     @Expose
     private Away away;
+
+    protected Lineup(Parcel in) {
+        home = in.readParcelable(Home.class.getClassLoader());
+    }
+
+    public static final Creator<Lineup> CREATOR = new Creator<Lineup>() {
+        @Override
+        public Lineup createFromParcel(Parcel in) {
+            return new Lineup(in);
+        }
+
+        @Override
+        public Lineup[] newArray(int size) {
+            return new Lineup[size];
+        }
+    };
 
     public Home getHome() {
         return home;
@@ -29,4 +51,13 @@ public class Lineup {
         this.away = away;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(home, flags);
+    }
 }

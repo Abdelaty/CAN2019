@@ -1,12 +1,15 @@
 
 package com.example.myapplication.POJO.Matches;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Example implements Serializable {
+public class Example implements Parcelable {
 
     @SerializedName("match_id")
     @Expose
@@ -83,6 +86,43 @@ public class Example implements Serializable {
     @SerializedName("statistics")
     @Expose
     private List<Object> statistics = null;
+
+    protected Example(Parcel in) {
+        matchId = in.readString();
+        countryId = in.readString();
+        countryName = in.readString();
+        leagueId = in.readString();
+        leagueName = in.readString();
+        matchDate = in.readString();
+        matchStatus = in.readString();
+        matchTime = in.readString();
+        matchHometeamName = in.readString();
+        matchHometeamScore = in.readString();
+        matchAwayteamName = in.readString();
+        matchAwayteamScore = in.readString();
+        matchHometeamHalftimeScore = in.readString();
+        matchAwayteamHalftimeScore = in.readString();
+        matchHometeamExtraScore = in.readString();
+        matchAwayteamExtraScore = in.readString();
+        matchHometeamPenaltyScore = in.readString();
+        matchAwayteamPenaltyScore = in.readString();
+        matchHometeamSystem = in.readString();
+        matchAwayteamSystem = in.readString();
+        matchLive = in.readString();
+        lineup = in.readParcelable(Lineup.class.getClassLoader());
+    }
+
+    public static final Creator<Example> CREATOR = new Creator<Example>() {
+        @Override
+        public Example createFromParcel(Parcel in) {
+            return new Example(in);
+        }
+
+        @Override
+        public Example[] newArray(int size) {
+            return new Example[size];
+        }
+    };
 
     public String getMatchId() {
         return matchId;
@@ -256,7 +296,7 @@ public class Example implements Serializable {
         return goalscorer;
     }
 
-    public void setGoalscorer(List<Object> goalscorer) {
+    public void setGoalscorer(ArrayList<Object> goalscorer) {
         this.goalscorer = goalscorer;
     }
 
@@ -284,4 +324,34 @@ public class Example implements Serializable {
         this.statistics = statistics;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(matchId);
+        dest.writeString(countryId);
+        dest.writeString(countryName);
+        dest.writeString(leagueId);
+        dest.writeString(leagueName);
+        dest.writeString(matchDate);
+        dest.writeString(matchStatus);
+        dest.writeString(matchTime);
+        dest.writeString(matchHometeamName);
+        dest.writeString(matchHometeamScore);
+        dest.writeString(matchAwayteamName);
+        dest.writeString(matchAwayteamScore);
+        dest.writeString(matchHometeamHalftimeScore);
+        dest.writeString(matchAwayteamHalftimeScore);
+        dest.writeString(matchHometeamExtraScore);
+        dest.writeString(matchAwayteamExtraScore);
+        dest.writeString(matchHometeamPenaltyScore);
+        dest.writeString(matchAwayteamPenaltyScore);
+        dest.writeString(matchHometeamSystem);
+        dest.writeString(matchAwayteamSystem);
+        dest.writeString(matchLive);
+        dest.writeParcelable(lineup, flags);
+    }
 }

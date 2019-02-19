@@ -2,5 +2,6 @@
     <string name="app_name">My Application</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="ad_id_banner">ca-app-pub-6936847820877381/4431253118</string>
 
 </resources>
