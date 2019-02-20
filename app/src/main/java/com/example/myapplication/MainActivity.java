@@ -18,7 +18,6 @@ import android.widget.Toast;
 
 import com.example.myapplication.Adapters.MatchAdapter;
 import com.example.myapplication.Adapters.NewsAdapter;
-import com.example.myapplication.Fragments.TodayFragment;
 import com.example.myapplication.Network.FootballMatches.API;
 import com.example.myapplication.Network.FootballMatches.RetrofitClientInstance;
 import com.example.myapplication.Network.SportNews.NEWS_API;
@@ -184,7 +183,8 @@ public class MainActivity extends AppCompatActivity {
                         if (getClass().getSimpleName() == "ChatActivity") {
                             break;
                         } else {
-
+                            Intent chatIntent = new Intent(MainActivity.this, Login.class);
+                            startActivity(chatIntent);
                             Toast.makeText(MainActivity.this, "ChatActivity", Toast.LENGTH_SHORT).show();
 
                         }
@@ -238,11 +238,11 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Example>>() {
             @Override
             public void onResponse(@NonNull Call<List<Example>> call, @NonNull Response<List<Example>> response) {
-                Log.v("ConnectedMatch", "Downloading Data Done" + response.body().get(0).getCards());
-                Log.v("Connected", "Downloading Data Done" + response.body().get(0).getMatchHometeamName());
-                Log.v("Connected", "Downloading Data Done" + response.body().get(0).getMatchAwayteamName());
-                Log.v("Connected", "Downloading Data Done" + response.body().get(0).getMatchHometeamScore());
-                Log.v("Connected", "Downloading Data Done" + response.body().get(0).getMatchAwayteamScore());
+//                Log.v("ConnectedMatch", "Downloading Data Done" + response.body().get(0).getCards());
+//                Log.v("Connected", "Downloading Data Done" + response.body().get(0).getMatchHometeamName());
+//                Log.v("Connected", "Downloading Data Done" + response.body().get(0).getMatchAwayteamName());
+//                Log.v("Connected", "Downloading Data Done" + response.body().get(0).getMatchHometeamScore());
+//                Log.v("Connected", "Downloading Data Done" + response.body().get(0).getMatchAwayteamScore());
                 generateMatchesList((ArrayList<Example>) response.body());
                 arrayList = (ArrayList<Example>) response.body();
 
@@ -298,14 +298,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void generateMatchesList(ArrayList<Example> matchesArrayList) {
-        Log.v("helllo", matchesArrayList.get(2).getMatchAwayteamName());
-
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("today", matchesArrayList);
-        TodayFragment todayFragment = new TodayFragment();
-        todayFragment.setArguments(bundle);
-        Intent myIntent = new Intent(getApplicationContext(), TodayFragment.class);
-        myIntent.putParcelableArrayListExtra("today", matchesArrayList); //Optional parameters
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelableArrayList("today", matchesArrayList);
+//        TodayFragment todayFragment = new TodayFragment();
+//        todayFragment.setArguments(bundle);
+//        Intent myIntent = new Intent(getApplicationContext(), TodayFragment.class);
+//        myIntent.putParcelableArrayListExtra("today", matchesArrayList); //Optional parameters
 
 //        Intent todayIntent = new Intent(this, TodayFragment.class);
 //        TodayFragment fragment = new TodayFragment();
@@ -316,17 +314,13 @@ public class MainActivity extends AppCompatActivity {
 //        fragmentManager.beginTransaction().replace(R.id.frame, fragment).commit();
 //        todayIntent.putParcelableArrayListExtra("today",matchesArrayList); //Optional parameters
         matchAdapter = new MatchAdapter(matchesArrayList, getApplicationContext());
-        Log.v("helllo", matchesArrayList.get(2).getMatchAwayteamName());
-
         matchList_rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, true));
 
         matchList_rv.setAdapter(matchAdapter);
 
     }
     private void showBannerAd() {
-        AdRequest adRequest = new AdRequest.Builder()
-                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                .build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         mBannerAd.loadAd(adRequest);
 
     }

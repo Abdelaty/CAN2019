@@ -19,7 +19,8 @@
             android:adjustViewBounds="true"
             android:cropToPadding="true"
             android:scaleType="center"
-            android:src="@drawable/ic_launcher_background" />
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="@string/news_image" />
 
 
     </RelativeLayout>
@@ -39,7 +40,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="Hello"
+            android:text="@string/news_title"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />
     </RelativeLayout>

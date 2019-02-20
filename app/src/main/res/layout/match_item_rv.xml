@@ -10,7 +10,8 @@
         android:padding="10dp"
 
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true">
 
         <ImageView
             android:id="@+id/home_team_img"
@@ -20,7 +21,9 @@
             android:layout_alignParentLeft="true"
             android:scaleType="fitXY"
             android:src="@drawable/ic_launcher_foreground"
-            android:tint="@android:color/black" />
+            android:tint="@android:color/black"
+            android:contentDescription="@string/home_team_image"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/home_team_name"
@@ -29,7 +32,7 @@
             android:layout_below="@id/home_team_img"
             android:layout_centerHorizontal="true"
 
-            android:text="Team A" />
+            android:text="@string/team_a" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -38,7 +41,8 @@
 android:padding="10dp"
         android:id="@+id/away_team"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true">
 
         <ImageView
             android:id="@+id/away_team_img"
@@ -47,7 +51,8 @@ android:padding="10dp"
             android:layout_height="80dp"
             android:scaleType="fitXY"
             android:src="@drawable/ic_launcher_foreground"
-            android:tint="@android:color/black" />
+            android:tint="@android:color/black"
+            android:contentDescription="@string/away_team_image" />
 
 
         <TextView
@@ -56,7 +61,7 @@ android:padding="10dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/away_team_img"
  android:layout_centerHorizontal="true"
-            android:text="Team B" />
+            android:text="@string/team_b" />
 
 
     </RelativeLayout>
@@ -67,8 +72,9 @@ android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/home_team"
-        android:text="1"
-        android:textStyle="bold" />
+        android:text="@string/_1"
+        android:textStyle="bold"
+        android:layout_toEndOf="@id/home_team" />
 
 
     <TextView
@@ -78,7 +84,8 @@ android:layout_centerVertical="true"
         android:layout_centerInParent="true"
         android:layout_toLeftOf="@id/away_team"
         android:text="0"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_toStartOf="@id/away_team" />
 
     <TextView
         android:id="@+id/time"
@@ -93,6 +100,6 @@ android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Started"
+        android:text="@string/started"
         android:textSize="12sp" />
 </RelativeLayout>

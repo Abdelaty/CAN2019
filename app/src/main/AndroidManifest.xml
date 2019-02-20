@@ -14,19 +14,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".Register"
+            android:parentActivityName="com.example.myapplication.MainActivity">
+        </activity>
+        <activity
+            android:name=".Chat"
+            android:parentActivityName="com.example.myapplication.Users" />
+        <activity
+            android:name=".Users"
+            android:parentActivityName="com.example.myapplication.MainActivity" />
+        <activity
+            android:name=".Login"
+            android:parentActivityName="com.example.myapplication.MainActivity" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6936847820877381~2295333923"
-            tools:replace="android:value"/>
+            tools:replace="android:value" />
+
         <activity android:name=".StadiumActivity" />
         <activity android:name=".DetailedMatch" />
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-
         <activity android:name=".MainActivity">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

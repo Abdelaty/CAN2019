@@ -3,40 +3,40 @@
 
     <item
         android:id="@+id/matches"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_action_ball"
         android:title="Matches" />
 
     <item
         android:id="@+id/groups"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_action_ball"
         android:title="Groups" />
     <item
         android:id="@+id/qualifications"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_action_achievement"
         android:title="Qualifications" />
     <item
         android:id="@+id/stadiums"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_action_ball"
         android:title="Stadiums" />
     <item
         android:id="@+id/chat"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_chat"
         android:title="Chat with organizers" />
     <item
         android:id="@+id/booking"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_train"
         android:title="Booking Trains" />
     <item
         android:id="@+id/send"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_send"
         android:title="Send Suggestions" />
     <item
         android:id="@+id/settings"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_action_settings"
         android:title="Settings" />
     <item
         android:id="@+id/about"
-        android:icon="@drawable/ic_launcher_background"
+        android:icon="@drawable/ic_announcement"
         android:title="About" />
 
 </menu>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CAN2019</string>
+    <string name="drawer_open">"افتح درج التنقل "</string>
+    <string name="drawer_close">"إغلاق درج التنقل "</string>
+    <string name="click_here_to_register">"اضغط هنا للتسجيل "</string>
+    <string name="enter_password">"أدخل كلمة المرور "</string>
+    <string name="login">"تسجيل الدخول "</string>
+    <string name="enter_username">"ادخل اسم المستخدم "</string>
+    <string name="register">تسجيل</string>
+    <string name="click_here_to_login">"انقر هنا لتسجيل الدخول "</string>
+    <string name="no_users_found">"لا يوجد مستخدمون! "</string>
+    <string name="started">بدأت</string>
+    <string name="stadium_image">"صورة الملعب "</string>
+    <string name="stadium_title">"عنوان الاستاد "</string>
+    <string name="news_image">"صورة الأخبار "</string>
+    <string name="news_title">"مرحبا "</string>
+    <string name="navigation_icon">رمز التنقل</string>
+    <string name="type_a_message">"اكتب رسالة ... "</string>
+    <string name="send_button">"إرسال زر "</string>
+    <string name="home_team_image">"صورة الفريق الرئيسية "</string>
+    <string name="team_a">"الفريق أ "</string>
+    <string name="away_team_image">"بعيدا صورة الفريق "</string>
+    <string name="team_b">"الفريق ب "</string>
+</resources>

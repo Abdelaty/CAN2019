@@ -40,7 +40,7 @@
             <com.google.android.gms.ads.AdView
                 android:id="@+id/banner_AdView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_below="@id/match_results_today_rv"
                 android:layout_centerHorizontal="true"
                 ads:adSize="BANNER"

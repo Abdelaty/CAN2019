@@ -1,7 +1,36 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name" translatable="false">CAN2019</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
-    <string name="ad_id_banner">ca-app-pub-6936847820877381/4431253118</string>
+    <string name="ad_id_banner" translatable="false">ca-app-pub-6936847820877381/4431253118</string>
+    <string name="click_here_to_register">Click here to register</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="register">Register</string>
+    <string name="click_here_to_login">Click here to login</string>
+    <string name="no_users_found">No users found!</string>
+    <string name="_2" translatable="false">2</string>
+    <string name="started">Started</string>
+    <string name="stadium_image">Stadium image</string>
+    <string name="stadium_title">stadium_title</string>
+    <string name="news_image">News Image</string>
+    <string name="news_title">Hello</string>
+    <string name="navigation_icon">Navigation Icon</string>
+    <string name="type_a_message">Type a message...</string>
+    <string name="send_button">Send Button</string>
+    <string name="home_team_image">Home Team Image</string>
+    <string name="team_a">Team A</string>
+    <string name="away_team_image">away team image</string>
+    <string name="team_b">Team B</string>
+    <string name="_1" translatable="false">1</string>
+    <string name="scorer" translatable="false">scorer</string>
+    <string name="goals" translatable="false">Goals</string>
+    <string name="textview" translatable="false">TextView</string>
 
+    <string-array name="language_option">
+        <item>English</item>
+        <item>Indonesian</item>
+        <item>Spanish</item>
+    </string-array>
 </resources>

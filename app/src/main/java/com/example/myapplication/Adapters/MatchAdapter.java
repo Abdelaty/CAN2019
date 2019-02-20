@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.DetailedMatch;
-import com.example.myapplication.Fragments.TodayFragment;
 import com.example.myapplication.POJO.Matches.Example;
 import com.example.myapplication.POJO.Matches.Home;
 import com.example.myapplication.R;
@@ -56,8 +55,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("today",matchArrayList);
-        TodayFragment todayFragment = new TodayFragment();
-        todayFragment.setArguments(bundle);
+//        TodayFragment todayFragment = new TodayFragment();
+//        todayFragment.setArguments(bundle);
 //        holder.step_name.setText(stepsList.get(position).getId().toString() + "- " + stepsList.get(position).getShortDescription());
         holder.homeScore_tv.setText(matchArrayList.get(position).getMatchHometeamScore());
         holder.awayName_tv.setText(matchArrayList.get(position).getMatchAwayteamName());
