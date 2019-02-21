@@ -38,8 +38,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.google.android.gms.ads.AdRequest.DEVICE_ID_EMULATOR;
-
 public class MainActivity extends AppCompatActivity {
     static String fromDate;
     private AdView mBannerAd;
@@ -62,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mBannerAd = (AdView) findViewById(R.id.banner_AdView);
+        mBannerAd = findViewById(R.id.banner_AdView);
 
         showBannerAd();
         setTitle("Matches Today");
-        dl = (DrawerLayout) findViewById(R.id.activity_main);
+        dl = findViewById(R.id.activity_main);
         viewPager = findViewById(R.id.item_rv);
         t = new ActionBarDrawerToggle(this, dl, R.string.drawer_open, R.string.drawer_close);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -74,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
         matchList_rv = findViewById(R.id.match_results_today_rv);
         dl.addDrawerListener(t);
         t.syncState();
-        nv = (NavigationView) findViewById(R.id.nv);
+        nv = findViewById(R.id.nv);
         Log.v("take", getClass().getSimpleName());
+
 //        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
 //        tabLayout.addTab(tabLayout.newTab().setText("Yesterday"));
 //        tabLayout.addTab(tabLayout.newTab().setText("Today"));
@@ -203,13 +202,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        fromDate = (String)
+        fromDate = getYesterdayDateString();
 
-                getYesterdayDateString();
-
-        toDate = (String)
-
-                getDate();
+        toDate = getDate();
         Log.v("wrongMessage", fromDate + "////" + toDate);
 
         generateNetworkCall();

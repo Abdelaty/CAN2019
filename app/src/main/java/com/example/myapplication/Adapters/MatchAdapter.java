@@ -15,10 +15,8 @@ import android.widget.Toast;
 
 import com.example.myapplication.DetailedMatch;
 import com.example.myapplication.POJO.Matches.Example;
-import com.example.myapplication.POJO.Matches.Home;
 import com.example.myapplication.R;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -27,7 +25,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     private ArrayList<Example> matchArrayList;
 
     private Context context;
-    private ArrayList<Object> goalScorerList,cardsList,awayLineupList,homeLineupList,staticsList;
+    private ArrayList<Object> goalScorerList, cardsList, awayLineupList, homeLineupList, staticsList;
 
     public MatchAdapter(ArrayList<Example> newsList, Context context) {
         this.matchArrayList = newsList;
@@ -54,7 +52,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 //        context.startActivity(todayIntent);
 
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList("today",matchArrayList);
+        bundle.putParcelableArrayList("today", matchArrayList);
 //        TodayFragment todayFragment = new TodayFragment();
 //        todayFragment.setArguments(bundle);
 //        holder.step_name.setText(stepsList.get(position).getId().toString() + "- " + stepsList.get(position).getShortDescription());
@@ -64,30 +62,36 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         holder.awayScore_tv.setText(matchArrayList.get(position).getMatchAwayteamScore());
         holder.matchTime_tv.setText(matchArrayList.get(position).getMatchTime());
         holder.statue_tv.setText(matchArrayList.get(position).getMatchStatus());
+        if (holder.homeName_tv.getText() == "Norwich City") {
+            holder.homeTeam_iv.setImageResource(R.drawable.norwich);
+        } else if (holder.homeName_tv.getText() == "Derby County") {
+            holder.homeTeam_iv.setImageResource(R.drawable.derby_county);
+        }
+        Log.v("team", matchArrayList.get(position).getMatchHometeamName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(context, holder.getAdapterPosition() + "hello", Toast.LENGTH_SHORT).show();
-                homeLineupList =(ArrayList<Object>) matchArrayList.get(position).getLineup().getHome().getStartingLineups();
-                awayLineupList =(ArrayList<Object>) matchArrayList.get(position).getLineup().getAway().getStartingLineups();
-                goalScorerList =(ArrayList<Object>) matchArrayList.get(position).getGoalscorer();
-                cardsList =(ArrayList<Object>) matchArrayList.get(position).getCards();
-                staticsList =(ArrayList<Object>) matchArrayList.get(position).getStatistics();
+                homeLineupList = (ArrayList<Object>) matchArrayList.get(position).getLineup().getHome().getStartingLineups();
+                awayLineupList = (ArrayList<Object>) matchArrayList.get(position).getLineup().getAway().getStartingLineups();
+                goalScorerList = (ArrayList<Object>) matchArrayList.get(position).getGoalscorer();
+                cardsList = (ArrayList<Object>) matchArrayList.get(position).getCards();
+                staticsList = (ArrayList<Object>) matchArrayList.get(position).getStatistics();
                 Intent intent = new Intent(context, DetailedMatch.class);
                 Bundle args = new Bundle();
-                args.putSerializable("homeLineupList",(Serializable)homeLineupList);
-                args.putSerializable("awayLineupList",(Serializable)awayLineupList);
-                args.putSerializable("goalScorerList",(Serializable)goalScorerList);
-                args.putSerializable("cardsList",(Serializable)cardsList);
-                args.putSerializable("staticsList",(Serializable)staticsList);
-                intent.putExtra("BUNDLE",args);
+                args.putSerializable("homeLineupList", homeLineupList);
+                args.putSerializable("awayLineupList", awayLineupList);
+                args.putSerializable("goalScorerList", goalScorerList);
+                args.putSerializable("cardsList", cardsList);
+                args.putSerializable("staticsList", staticsList);
+                intent.putExtra("BUNDLE", args);
                 context.startActivity(intent);
-                Log.v("homeLineup",homeLineupList.toString());
-                Log.v("awayLineup",awayLineupList.toString());
-                Log.v("staticsList",staticsList.toString());
+                Log.v("homeLineup", homeLineupList.toString());
+                Log.v("awayLineup", awayLineupList.toString());
+                Log.v("staticsList", staticsList.toString());
 
-                Log.v("goalScorerList",goalScorerList.toString());
-                Log.v("cardsList",cardsList.toString());
+                Log.v("goalScorerList", goalScorerList.toString());
+                Log.v("cardsList", cardsList.toString());
 
 //                Intent myIntent = new Intent(context, DetailedMatch.class);
 //                myIntent.putExtra("homeName", "Your First Name Here");
@@ -113,7 +117,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-    return matchArrayList.size();
+        return matchArrayList.size();
     }
 
     public interface OnItemClickListener {

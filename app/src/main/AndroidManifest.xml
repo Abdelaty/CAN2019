@@ -15,25 +15,43 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".NewsActivity"
+            android:label="@string/title_activity_news"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            tools:targetApi="jelly_bean" />
+        <activity
             android:name=".Register"
-            android:parentActivityName="com.example.myapplication.MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
         <activity
             android:name=".Chat"
-            android:parentActivityName="com.example.myapplication.Users" />
+            android:parentActivityName=".Users"
+            tools:targetApi="jelly_bean" />
         <activity
             android:name=".Users"
-            android:parentActivityName="com.example.myapplication.MainActivity" />
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
         <activity
             android:name=".Login"
-            android:parentActivityName="com.example.myapplication.MainActivity" />
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-6936847820877381~2295333923"
             tools:replace="android:value" />
 
-        <activity android:name=".StadiumActivity" />
-        <activity android:name=".DetailedMatch" />
+        <activity
+            android:name=".StadiumActivity"
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
+
+        <activity
+            android:name=".DetailedMatch"
+            android:parentActivityName=".MainActivity"
+            tools:targetApi="jelly_bean" />
+
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"

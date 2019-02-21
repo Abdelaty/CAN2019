@@ -1,6 +1,7 @@
 package com.example.myapplication.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.example.myapplication.NewsActivity;
 import com.example.myapplication.POJO.News.Article;
 import com.example.myapplication.R;
 
@@ -54,13 +56,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             public void onClick(View view) {
                 Toast.makeText(context, holder.getAdapterPosition() + "hello", Toast.LENGTH_SHORT).show();
 
-//
-//                Intent myIntent = new Intent(context, DetailsActivity.class);
-//                myIntent.putExtra("position", position); //Optional parameters ing
-//                myIntent.putParcelableArrayListExtra("steps", stepsList); //Optional parameters
-//                Log.v(getClass().getName(), "position is:" + position);
-//
-//                context.startActivity(myIntent);
+
+                Intent myIntent = new Intent(context, NewsActivity.class);
+                myIntent.putExtra("newsTitle", newsExampleArrayList.get(position).getTitle()); //Optional parameters ing
+                myIntent.putExtra("time", newsExampleArrayList.get(position).getPublishedAt()); //Optional parameters ing
+                myIntent.putExtra("imageUrl", newsExampleArrayList.get(position).getUrlToImage()); //Optional parameters ing
+                myIntent.putExtra("newsUrl", newsExampleArrayList.get(position).getUrl()); //Optional parameters ing
+                myIntent.putExtra("content", newsExampleArrayList.get(position).getDescription()); //Optional parameters ing
+
+                context.startActivity(myIntent);
             }
         });
     }
