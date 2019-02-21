@@ -128,28 +128,29 @@ public class MainActivity extends AppCompatActivity {
 
                         }
                         break;
-                    case R.id.qualifications:
-                        if (getClass().getSimpleName() == "QualificationsActivity") {
-                            break;
-                        } else {
-                            Toast.makeText(MainActivity.this, "qualifications", Toast.LENGTH_SHORT).show();
-
-                        }
-                        break;
-                    case R.id.groups:
-                        if (getClass().getSimpleName() == "GroupsActivity") {
-                            break;
-                        } else {
-
-                            Toast.makeText(MainActivity.this, "GroupsActivity", Toast.LENGTH_SHORT).show();
-
-                        }
-                        break;
+//                    case R.id.qualifications:
+//                        if (getClass().getSimpleName() == "QualificationsActivity") {
+//                            break;
+//                        } else {
+//                            Toast.makeText(MainActivity.this, "qualifications", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                        break;
+//                    case R.id.groups:
+//                        if (getClass().getSimpleName() == "GroupsActivity") {
+//                            break;
+//                        } else {
+//
+//                            Toast.makeText(MainActivity.this, "GroupsActivity", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                        break;
                     case R.id.booking:
                         if (getClass().getSimpleName() == "BookingActivity") {
                             break;
                         } else {
-
+                            Intent bookingIntent = new Intent(MainActivity.this, BookingActivity.class);
+                            startActivity(bookingIntent);
                             Toast.makeText(MainActivity.this, "BookingActivity", Toast.LENGTH_SHORT).show();
 
                         }
@@ -168,16 +169,16 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     break;
-                    case R.id.stadiums:
-                        if (getClass().getSimpleName() == "StadiumsActivity") {
-                            break;
-                        } else {
-                            Intent intent = new Intent(MainActivity.this, StadiumActivity.class);
-                            startActivity(intent);
-                            Toast.makeText(MainActivity.this, "StadiumsActivity", Toast.LENGTH_SHORT).show();
-
-                        }
-                        break;
+//                    case R.id.stadiums:
+//                        if (getClass().getSimpleName() == "StadiumsActivity") {
+//                            break;
+//                        } else {
+//                            Intent intent = new Intent(MainActivity.this, StadiumActivity.class);
+//                            startActivity(intent);
+//                            Toast.makeText(MainActivity.this, "StadiumsActivity", Toast.LENGTH_SHORT).show();
+//
+//                        }
+//                        break;
                     case R.id.chat:
                         if (getClass().getSimpleName() == "ChatActivity") {
                             break;

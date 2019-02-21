@@ -6,15 +6,15 @@
         android:icon="@drawable/ic_action_ball"
         android:title="Matches" />
 
-    <item
-        android:id="@+id/groups"
-        android:icon="@drawable/ic_action_ball"
-        android:title="Groups" />
-    <item
-        android:id="@+id/qualifications"
-        android:icon="@drawable/ic_action_achievement"
-        android:title="Qualifications" />
-    <item
+    <!--<item-->
+    <!--android:id="@+id/groups"-->
+    <!--android:icon="@drawable/ic_action_ball"-->
+    <!--android:title="Groups" />-->
+    <!--<item-->
+    <!--android:id="@+id/qualifications"-->
+    <!--android:icon="@drawable/ic_action_achievement"-->
+    <!--android:title="Qualifications" />-->
+    <!--<item-->
         android:id="@+id/stadiums"
         android:icon="@drawable/ic_action_ball"
         android:title="Stadiums" />

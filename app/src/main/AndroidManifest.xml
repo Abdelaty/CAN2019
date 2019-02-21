@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".BookingActivity"></activity>
         <activity
             android:name=".NewsActivity"
             android:label="@string/title_activity_news"
@@ -46,12 +47,10 @@
             android:name=".StadiumActivity"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
-
         <activity
             android:name=".DetailedMatch"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean" />
-
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
