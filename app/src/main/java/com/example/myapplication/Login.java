@@ -2,19 +2,21 @@ package com.example.myapplication;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,10 +32,10 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setTitle("Login");
 
-        registerUser = (TextView)findViewById(R.id.register);
-        username = (EditText)findViewById(R.id.username);
-        password = (EditText)findViewById(R.id.password);
-        loginButton = (Button)findViewById(R.id.loginButton);
+        registerUser = findViewById(R.id.register);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        loginButton = findViewById(R.id.loginButton);
 
         registerUser.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,38 +49,33 @@ public class Login extends AppCompatActivity {
                 user = username.getText().toString();
                 pass = password.getText().toString();
 
-                if(user.equals("")){
-                    username.setError("Enter The User Name");
-                }
-                else if(pass.equals("")){
-                    password.setError("Enter The User Password");
-                }
-                else{
+                if (user.equals("")) {
+                    username.setError(getString(R.string.enter_user_error));
+                } else if (pass.equals("")) {
+                    password.setError(getString(R.string.enter_pass_error));
+                } else {
                     String url = "https://can2019-2b45d.firebaseio.com/users.json";
                     final ProgressDialog pd = new ProgressDialog(Login.this);
-                    pd.setMessage("Loading...");
+                    pd.setMessage(getString(R.string.loading));
                     pd.show();
 
-                    StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+                    StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String s) {
-                            if(s.equals("null")){
-                                Toast.makeText(Login.this, "User not found", Toast.LENGTH_LONG).show();
-                            }
-                            else{
+                            if (s.equals("null")) {
+                                Toast.makeText(Login.this, R.string.user_not_dound, Toast.LENGTH_LONG).show();
+                            } else {
                                 try {
                                     JSONObject obj = new JSONObject(s);
 
-                                    if(!obj.has(user)){
-                                        Toast.makeText(Login.this, "User not found", Toast.LENGTH_LONG).show();
-                                    }
-                                    else if(obj.getJSONObject(user).getString("password").equals(pass)){
+                                    if (!obj.has(user)) {
+                                        Toast.makeText(Login.this, R.string.user_not_dound, Toast.LENGTH_LONG).show();
+                                    } else if (obj.getJSONObject(user).getString(getString(R.string.pass)).equals(pass)) {
                                         UserDetails.username = user;
                                         UserDetails.password = pass;
                                         startActivity(new Intent(Login.this, Users.class));
-                                    }
-                                    else {
-                                        Toast.makeText(Login.this, "Incorrect Password", Toast.LENGTH_LONG).show();
+                                    } else {
+                                        Toast.makeText(Login.this, R.string.incorect_pass, Toast.LENGTH_LONG).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -87,7 +84,7 @@ public class Login extends AppCompatActivity {
 
                             pd.dismiss();
                         }
-                    },new Response.ErrorListener(){
+                    }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
                             System.out.println("" + volleyError);

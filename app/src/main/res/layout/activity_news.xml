@@ -25,6 +25,7 @@
                 android:id="@+id/expandedImage"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                android:contentDescription="@string/expanded_image"
                 android:scaleType="fitXY"
                 android:src="@drawable/googleg_disabled_color_18"
                 app:layout_collapseMode="parallax"

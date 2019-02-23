@@ -1,7 +1,5 @@
 package com.example.myapplication.Network.SportNews;
 
-import android.util.Log;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -18,9 +16,7 @@ public class NewsRetrofitClientInstance {
                     .baseUrl(NEWS_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
-            Log.v("RetrofitClientInstance", retrofit.toString());
         }
-        Log.d("NewsUrL:", NEWS_URL);
 
         return retrofit;
 

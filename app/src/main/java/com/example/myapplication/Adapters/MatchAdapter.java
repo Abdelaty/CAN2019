@@ -1,23 +1,28 @@
 package com.example.myapplication.Adapters;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.myapplication.DetailedMatch;
+import com.example.myapplication.Activites.DetailedMatch;
+import com.example.myapplication.Database.AppDatabase;
+import com.example.myapplication.MatchWidget;
 import com.example.myapplication.POJO.Matches.Example;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+
+import static com.example.myapplication.Database.AppDatabase.getAppDatabase;
 
 
 public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder> {
@@ -25,6 +30,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     private ArrayList<Example> matchArrayList;
 
     private Context context;
+    AppDatabase db = getAppDatabase(context);
     private ArrayList<Object> goalScorerList, cardsList, awayLineupList, homeLineupList, staticsList;
 
     public MatchAdapter(ArrayList<Example> newsList, Context context) {
@@ -47,70 +53,42 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull final MatchAdapter.MyViewHolder holder, final int position) {
-//        Intent todayIntent = new Intent(context, TodayFragment.class);
-//        todayIntent.putParcelableArrayListExtra("today", matchArrayList); //Optional parameters
-//        context.startActivity(todayIntent);
+
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("today", matchArrayList);
-//        TodayFragment todayFragment = new TodayFragment();
-//        todayFragment.setArguments(bundle);
-//        holder.step_name.setText(stepsList.get(position).getId().toString() + "- " + stepsList.get(position).getShortDescription());
+        holder.homeTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchHometeamName()).getImageId());
+        holder.awayTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchAwayteamName()).getImageId());
         holder.homeScore_tv.setText(matchArrayList.get(position).getMatchHometeamScore());
         holder.awayName_tv.setText(matchArrayList.get(position).getMatchAwayteamName());
         holder.homeName_tv.setText(matchArrayList.get(position).getMatchHometeamName());
         holder.awayScore_tv.setText(matchArrayList.get(position).getMatchAwayteamScore());
         holder.matchTime_tv.setText(matchArrayList.get(position).getMatchTime());
         holder.statue_tv.setText(matchArrayList.get(position).getMatchStatus());
-        if (holder.homeName_tv.getText() == "Norwich City") {
-            holder.homeTeam_iv.setImageResource(R.drawable.norwich);
-        } else if (holder.homeName_tv.getText() == "Derby County") {
-            holder.homeTeam_iv.setImageResource(R.drawable.derby_county);
-        }
-        Log.v("team", matchArrayList.get(position).getMatchHometeamName());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, holder.getAdapterPosition() + "hello", Toast.LENGTH_SHORT).show();
                 homeLineupList = (ArrayList<Object>) matchArrayList.get(position).getLineup().getHome().getStartingLineups();
                 awayLineupList = (ArrayList<Object>) matchArrayList.get(position).getLineup().getAway().getStartingLineups();
                 goalScorerList = (ArrayList<Object>) matchArrayList.get(position).getGoalscorer();
                 cardsList = (ArrayList<Object>) matchArrayList.get(position).getCards();
                 staticsList = (ArrayList<Object>) matchArrayList.get(position).getStatistics();
                 Intent intent = new Intent(context, DetailedMatch.class);
-                Bundle args = new Bundle();
-                args.putSerializable("homeLineupList", homeLineupList);
-                args.putSerializable("awayLineupList", awayLineupList);
-                args.putSerializable("goalScorerList", goalScorerList);
-                args.putSerializable("cardsList", cardsList);
-                args.putSerializable("staticsList", staticsList);
-                intent.putExtra("BUNDLE", args);
-                context.startActivity(intent);
-                Log.v("homeLineup", homeLineupList.toString());
-                Log.v("awayLineup", awayLineupList.toString());
-                Log.v("staticsList", staticsList.toString());
+//                Bundle args = new Bundle();
+//                args.putSerializable("homeLineupList", homeLineupList);
+//                args.putSerializable("awayLineupList", awayLineupList);
+//                args.putSerializable("goalScorerList", goalScorerList);
+//                args.putSerializable("cardsList", cardsList);
+//                args.putSerializable("staticsList", staticsList);
+//                intent.putExtra("BUNDLE", args);
+//                context.startActivity(intent);
 
-                Log.v("goalScorerList", goalScorerList.toString());
-                Log.v("cardsList", cardsList.toString());
+                Intent intent1 = new Intent(MatchWidget.ACTION_TEXT_CHANGED);
+                intent1.putExtra("newMatch", "Next Match: \n " + matchArrayList.get(0).getMatchHometeamName() + " VS " + matchArrayList.get(0).getMatchAwayteamName() + "\n" + "Time:" + matchArrayList.get(0).getMatchDate() + "\n");
+                context.sendBroadcast(intent);
+                widget();
 
-//                Intent myIntent = new Intent(context, DetailedMatch.class);
-//                myIntent.putExtra("homeName", "Your First Name Here");
-//                myIntent.putExtra("awayName", "Your First Name Here");
-//                myIntent.putExtra("homeScore", "Your First Name Here");
-//                myIntent.putExtra("awayScore", "Your First Name Here");
-//                myIntent.putExtra("matchTime", "Your First Name Here");
-//                myIntent.putExtra("statue", "Your First Name Here");
-//                myIntent.putExtra("penaltyHome", "Your First Name Here");
-//                myIntent.putExtra("penaltyAway", "Your First Name Here");
-//                myIntent.putStringArrayListExtra("goalScorer", matchArrayList.get(position).getGoalscorer());
-//                myIntent.putStringArrayListExtra("cards",  matchArrayList.get(position).getCards());
-//                Log.v("goalScorer", matchArrayList.get(position).getCards().toString());
-//                Log.v("goalScorer", matchArrayList.get(position).getCards().get(0).toString());
-//                myIntent.putStringArrayListExtra("homeLineup",  matchArrayList.get(position).getLineup().getHome().getStartingLineups());
-//                Log.v("goalScorer", matchArrayList.get(position).getLineup().getHome().toString());
-////                myIntent.putStringArrayListExtra("awayLineup",  matchArrayList.get(position).getLineup().getAway());
-//                Log.v("goalScorer", matchArrayList.get(position).getLineup().getAway().toString());
-//                Log.v("goalScorer", matchArrayList.get(position).getLineup().getAway().get(0).toString());
+
             }
         });
     }
@@ -118,6 +96,23 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     @Override
     public int getItemCount() {
         return matchArrayList.size();
+    }
+
+    void widget() {
+        String nextMatch;
+        nextMatch = "Next Match: \n " + matchArrayList.get(0).getMatchHometeamName() + " VS " + matchArrayList.get(0).getMatchAwayteamName() + "\n" + "Time:" + matchArrayList.get(0).getMatchDate() + "\n";
+        SharedPreferences preferences = context.getSharedPreferences("match", 0);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("matchWidget", nextMatch);
+        editor.apply();
+
+//            Intent intentWidget = new Intent(getBaseContext(),RecipesWidget.class);
+//            intentWidget.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        int[] ids = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, MatchWidget.class));
+//            intentWidget.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+//            sendBroadcast(intentWidget);
+        MatchWidget myWidget = new MatchWidget();
+        myWidget.onUpdate(context, AppWidgetManager.getInstance(context), ids);
     }
 
     public interface OnItemClickListener {

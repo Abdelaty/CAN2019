@@ -1,13 +1,15 @@
 package com.example.myapplication;
+
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -15,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.firebase.client.Firebase;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,12 +31,12 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        setTitle("Register");
+        setTitle(R.string.reg_main);
 
-        username = (EditText)findViewById(R.id.username);
-        password = (EditText)findViewById(R.id.password);
-        registerButton = (Button)findViewById(R.id.registerButton);
-        login = (TextView)findViewById(R.id.login);
+        username = findViewById(R.id.username);
+        password = findViewById(R.id.password);
+        registerButton = findViewById(R.id.registerButton);
+        login = findViewById(R.id.login);
         Firebase.setAndroidContext(this);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,45 +50,39 @@ public class Register extends AppCompatActivity {
                 user = username.getText().toString();
                 pass = password.getText().toString();
 
-                if(user.equals("")){
-                    username.setError("can't be blank");
-                }
-                else if(pass.equals("")){
-                    password.setError("can't be blank");
-                }
-                else if(!user.matches("[A-Za-z0-9]+")){
-                    username.setError("only alphabet or number allowed");
-                }
-                else if(user.length()<5){
-                    username.setError("at least 5 characters long");
-                }
-                else if(pass.length()<5){
-                    password.setError("at least 5 characters long");
-                }
-                else {
+                if (user.equals("")) {
+                    username.setError(getString(R.string.blank_error));
+                } else if (pass.equals("")) {
+                    password.setError(getString(R.string.blank_error));
+                } else if (!user.matches("[A-Za-z0-9]+")) {
+                    username.setError(getString(R.string.only_alphabet));
+                } else if (user.length() < 5) {
+                    username.setError(getString(R.string.at_least_5));
+                } else if (pass.length() < 5) {
+                    password.setError(getString(R.string.at_least_5));
+                } else {
                     final ProgressDialog pd = new ProgressDialog(Register.this);
-                    pd.setMessage("Loading...");
+                    pd.setMessage(getString(R.string.loading));
                     pd.show();
                     String url = "https://can2019-2b45d.firebaseio.com/users.json";
-                    StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+                    StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                         @Override
                         public void onResponse(String s) {
                             Firebase reference = new Firebase("https://can2019-2b45d.firebaseio.com/users");
-                            if(s.equals("null")) {
-                                reference.child(user).child("password").setValue(pass);
-                                Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_LONG).show();
-                            }
-                            else {
+                            if (s.equals("null")) {
+                                reference.child(user).child(getString(R.string.password)).setValue(pass);
+                                Toast.makeText(Register.this, R.string.Reg_suc, Toast.LENGTH_LONG).show();
+                            } else {
                                 try {
                                     JSONObject obj = new JSONObject(s);
 
                                     if (!obj.has(user)) {
-                                        reference.child(user).child("password").setValue(pass);
-                                        Toast.makeText(Register.this, "Registration Successful", Toast.LENGTH_LONG).show();
+                                        reference.child(user).child(getString(R.string.password)).setValue(pass);
+                                        Toast.makeText(Register.this, R.string.Reg_suc, Toast.LENGTH_LONG).show();
                                         Intent i = new Intent(Register.this, Login.class);
                                         startActivity(i);
                                     } else {
-                                        Toast.makeText(Register.this, "Username Already Exists", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Register.this, R.string.user_exist, Toast.LENGTH_LONG).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
@@ -93,10 +90,10 @@ public class Register extends AppCompatActivity {
                             }
                             pd.dismiss();
                         }
-                    },new Response.ErrorListener(){
+                    }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
-                            System.out.println("" + volleyError );
+                            System.out.println("" + volleyError);
                             pd.dismiss();
                         }
                     });

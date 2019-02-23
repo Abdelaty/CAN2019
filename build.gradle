@@ -4,7 +4,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.3.1'
@@ -13,12 +13,21 @@ buildscript {
         // in the individual module build.gradle files
     }
 }
-
+ext
+        {
+    buildToolsVersion = "25.0.2"
+    supportLibVersion = "25.3.1"
+    archRoomVersion = "1.0.0-alpha1"
+}
 allprojects {
+    configurations.matching { it.name == '_internal_aapt2_binary' }.all { config ->
+        config.resolutionStrategy.eachDependency { details ->
+            details.useVersion("3.5.0-alpha03-5252756")}}
     repositories {
         google()
         jcenter()
         maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.google.com' }
 
     }
 }

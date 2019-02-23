@@ -1,6 +1,13 @@
 apply plugin: 'com.android.application'
-
 android {
+    signingConfigs {
+        config {
+            keyAlias '1234'
+            keyPassword '12451'
+            storeFile file('C:/AdwCleaner/Logs/key.jks')
+            storePassword '1241'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.myapplication"
@@ -30,7 +37,6 @@ android {
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
     }
-
 }
 
 dependencies {
@@ -54,5 +60,8 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.firebase:firebase-client-android:2.5.2'
     implementation 'com.android.volley:volley:1.1.0'
+    implementation 'com.google.firebase:firebase-database:16.0.6'
+    implementation 'android.arch.persistence.room:runtime:1.1.1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.1.1'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -23,7 +23,6 @@
     <string name="team_a">Team A</string>
     <string name="away_team_image">away team image</string>
     <string name="team_b">Team B</string>
-    <string name="_1" translatable="false">1</string>
     <string name="scorer" translatable="false">scorer</string>
     <string name="goals" translatable="false">Goals</string>
     <string name="textview" translatable="false">TextView</string>
@@ -33,8 +32,8 @@
         <item>Indonesian</item>
         <item>Spanish</item>
     </string-array>
-    <string name="title_activity_news">NewsActivity</string>
-    <string name="large_text">
+    <string name="title_activity_news" translatable="false">NewsActivity</string>
+    <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -128,4 +127,94 @@
     <string name="breaking_news">Breaking News</string>
     <string name="_2019_12_11">2019/12/11</string>
     <string name="youm_7">Youm 7</string>
+    <string name="splash_screen">SPLASH SCREEN</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="about_act">AboutActivity</string>
+    <string name="about">about</string>
+    <string name="stadium_activity">StadiumActivity</string>
+    <string name="stadium">Stadium</string>
+    <string name="booking_activity">BookingActivity</string>
+    <string name="class_name">com.example.myapplication.Activites.MainActivity$1</string>
+    <string name="main_activity">MainActivity</string>
+    <string name="chat_activity">ChatActivity</string>
+    <string name="send_activity">SendActivity</string>
+    <string name="news_title_key">newsTitle</string>
+    <string name="booking_link">https://enr.gov.eg/ticketing/public/login.jsf</string>
+    <string name="team1">West Bromwich Albion</string>
+    <string name="team2">Norwich City</string>
+    <string name="team3">Middlesbrough</string>
+    <string name="team4">Leeds United</string>
+    <string name="team5">Bristol City</string>
+    <string name="team6">Sheffield United</string>
+    <string name="team7">Derby County</string>
+    <string name="team8">Birmingham City</string>
+    <string name="team9">Nottingham Forest</string>
+    <string name="team10">Swansea City</string>
+    <string name="team11">Hull City</string>
+    <string name="team12">Sheffield Wednesday</string>
+    <string name="team13">Aston Villa</string>
+    <string name="team14">Preston North End</string>
+    <string name="team15">Stoke City</string>
+    <string name="team16">Queens Park Rangers</string>
+    <string name="team17">Blackburn Rovers</string>
+    <string name="team18">Bolton Wanderers</string>
+    <string name="team19">Reading</string>
+    <string name="team20">Brentford</string>
+    <string name="team21">Millwall</string>
+    <string name="team22">Wigan Athletic</string>
+    <string name="team23">Rotherham United</string>
+    <string name="team24">Ipswich Town</string>
+    <string name="wrong">wrongMessageNews</string>
+    <string name="main_title">Matches Today</string>
+    <string name="key">ce0098152675e978d98461808e74e1283c9c8c5e7dcdd5ef39ae9014b889ed25</string>
+    <string name="leauge_id">63</string>
+    <string name="share_using">Share using</string>
+    <string name="stadium_main">Stadiums</string>
+    <string name="cairo_stad">Cairo Stadium</string>
+    <string name="suez_stad">Suez Stadium</string>
+    <string name="isma_stad">Ismaliaa Stadium</string>
+    <string name="alex_stad">Alexandria Stadium</string>
+    <string name="bor_saed_stad">Bor Saeed Stadium</string>
+    <string name="air_forces_stad">Air Forces Stadium</string>
+    <string name="chat_main">Chat</string>
+    <string name="enter_user_error">Enter The User Name</string>
+    <string name="enter_pass_error">Enter The User Password</string>
+    <string name="loading">Loading...</string>
+    <string name="user_not_dound">User not found</string>
+    <string name="pass">password</string>
+    <string name="incorect_pass">Incorrect Password</string>
+    <string name="reg_main">Register</string>
+    <string name="blank_error">can\'t be blank</string>
+    <string name="only_alphabet">only alphabet or number allowed</string>
+    <string name="at_least_5">at least 5 characters long</string>
+    <string name="password">password</string>
+    <string name="Reg_suc">Registration Successful</string>
+    <string name="user_exist">Username Already Exists</string>
+    <string name="organ_main">Organizers</string>
+    <string name="yellow_cards">Yellow cards</string>
+
+    <string name="fouls">Fouls</string>
+
+    <string name="offsides">Offsides</string>
+
+    <string name="corners">Corners</string>
+
+    <string name="shoot_of_target">Shoot of target</string>
+    <string name="shoot_on_target">Shoot on target</string>
+
+    <string name="_1">1</string>
+    <string name="_0">0</string>
+    <string name="_18_00">18:00</string>
+    <string name="possession">Possession</string>
+    <string name="expanded_image">expanded image</string>
+    <string name="_00_00">00:00</string>
+    <string name="score">-</string>
+    <string name="score_away">-</string>
+    <string name="matches">Matches</string>
+    <string name="stadiums">Stadiums</string>
+    <string name="chat_with_organizers">Chat with organizers</string>
+    <string name="booking_trains">Booking Trains</string>
+    <string name="send_suggestions">Send Suggestions</string>
+    <string name="about_main">About</string>
 </resources>

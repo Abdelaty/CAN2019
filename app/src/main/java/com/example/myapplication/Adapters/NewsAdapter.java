@@ -10,11 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
-import com.example.myapplication.NewsActivity;
+import com.example.myapplication.Activites.NewsActivity;
 import com.example.myapplication.POJO.News.Article;
 import com.example.myapplication.R;
 
@@ -45,7 +44,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final NewsAdapter.MyViewHolder holder, final int position) {
-//        holder.step_name.setText(stepsList.get(position).getId().toString() + "- " + stepsList.get(position).getShortDescription());
         holder.news_title.setText(newsExampleArrayList.get(position).getTitle());
 
         Glide.with(context).load(newsExampleArrayList.get(position).getUrlToImage()).transition(DrawableTransitionOptions.withCrossFade())
@@ -54,11 +52,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, holder.getAdapterPosition() + "hello", Toast.LENGTH_SHORT).show();
-
 
                 Intent myIntent = new Intent(context, NewsActivity.class);
-                myIntent.putExtra("newsTitle", newsExampleArrayList.get(position).getTitle()); //Optional parameters ing
+                myIntent.putExtra(context.getString(R.string.news_title_key), newsExampleArrayList.get(position).getTitle()); //Optional parameters ing
                 myIntent.putExtra("time", newsExampleArrayList.get(position).getPublishedAt()); //Optional parameters ing
                 myIntent.putExtra("imageUrl", newsExampleArrayList.get(position).getUrlToImage()); //Optional parameters ing
                 myIntent.putExtra("newsUrl", newsExampleArrayList.get(position).getUrl()); //Optional parameters ing

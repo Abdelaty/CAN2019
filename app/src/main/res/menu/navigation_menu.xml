@@ -4,7 +4,7 @@
     <item
         android:id="@+id/matches"
         android:icon="@drawable/ic_action_ball"
-        android:title="Matches" />
+        android:title="@string/matches" />
 
     <!--<item-->
     <!--android:id="@+id/groups"-->
@@ -14,29 +14,30 @@
     <!--android:id="@+id/qualifications"-->
     <!--android:icon="@drawable/ic_action_achievement"-->
     <!--android:title="Qualifications" />-->
-    <!--<item-->
+    <item
         android:id="@+id/stadiums"
         android:icon="@drawable/ic_action_ball"
-        android:title="Stadiums" />
+        android:title="@string/stadiums" />
     <item
         android:id="@+id/chat"
         android:icon="@drawable/ic_chat"
-        android:title="Chat with organizers" />
+        android:title="@string/chat_with_organizers" />
     <item
         android:id="@+id/booking"
         android:icon="@drawable/ic_train"
-        android:title="Booking Trains" />
-    <item
-        android:id="@+id/send"
-        android:icon="@drawable/ic_send"
-        android:title="Send Suggestions" />
-    <item
-        android:id="@+id/settings"
-        android:icon="@drawable/ic_action_settings"
-        android:title="Settings" />
+        android:title="@string/booking_trains" />
+    <!--<item-->
+    <!--android:id="@+id/send"-->
+    <!--android:icon="@drawable/ic_send"-->
+    <!--android:title="@string/send_suggestions" />-->
+    <!--<item-->
+    <!--android:id="@+id/settings"-->
+    <!--android:icon="@drawable/ic_action_settings"-->
+    <!--android:title="Settings" />-->
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_announcement"
-        android:title="About" />
+        android:title="@string/about_main" />
+
 
 </menu>

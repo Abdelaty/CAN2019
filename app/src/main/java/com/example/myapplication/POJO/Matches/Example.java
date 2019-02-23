@@ -1,16 +1,27 @@
-
 package com.example.myapplication.POJO.Matches;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Example implements Parcelable {
 
+    public static final Creator<Example> CREATOR = new Creator<Example>() {
+        @Override
+        public Example createFromParcel(Parcel in) {
+            return new Example(in);
+        }
+
+        @Override
+        public Example[] newArray(int size) {
+            return new Example[size];
+        }
+    };
     @SerializedName("match_id")
     @Expose
     private String matchId;
@@ -111,18 +122,6 @@ public class Example implements Parcelable {
         matchLive = in.readString();
         lineup = in.readParcelable(Lineup.class.getClassLoader());
     }
-
-    public static final Creator<Example> CREATOR = new Creator<Example>() {
-        @Override
-        public Example createFromParcel(Parcel in) {
-            return new Example(in);
-        }
-
-        @Override
-        public Example[] newArray(int size) {
-            return new Example[size];
-        }
-    };
 
     public String getMatchId() {
         return matchId;
