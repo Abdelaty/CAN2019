@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,15 +62,21 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         holder.homeTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchHometeamName()).getImageId());
         holder.awayTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchAwayteamName()).getImageId());
         //if statement
-        if (matchArrayList.get(position).getMatchHometeamScore() == null) {
-            holder.homeScore_tv.setText("0");
+        if (matchArrayList.get(position).getMatchHometeamScore() == null || matchArrayList.get(position).getMatchHometeamScore().isEmpty() || matchArrayList.get(position).getMatchHometeamScore().matches("") || matchArrayList.get(position).getMatchHometeamScore().equals("0") || matchArrayList.get(position).getMatchHometeamScore().contentEquals("0")) {
+            holder.homeScore_tv.setText("00");
+            Log.v("if home", matchArrayList.get(position).getMatchHometeamScore());
+
         } else {
+
+            Log.v("else home", matchArrayList.get(position).getMatchHometeamScore());
             holder.homeScore_tv.setText(matchArrayList.get(position).getMatchHometeamScore());
         }
-
-        if (matchArrayList.get(position).getMatchAwayteamScore() == null) {
-            holder.awayScore_tv.setText("0");
+        if (matchArrayList.get(position).getMatchAwayteamScore() == null || matchArrayList.get(position).getMatchAwayteamScore().isEmpty() || matchArrayList.get(position).getMatchAwayteamScore().matches("") || matchArrayList.get(position).getMatchAwayteamScore().equals("0") || matchArrayList.get(position).getMatchAwayteamScore().contentEquals("0")) {
+            holder.awayScore_tv.setText("00");
+            Log.v("if away", matchArrayList.get(position).getMatchAwayteamScore());
         } else {
+            Log.v("else away", matchArrayList.get(position).getMatchAwayteamScore());
+
             holder.awayScore_tv.setText(matchArrayList.get(position).getMatchAwayteamScore());
         }
 
@@ -102,7 +109,7 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         return matchArrayList.size();
     }
 
-    void widget() {
+    private void widget() {
         String nextMatch;
         nextMatch = "Next Match: \n " + matchArrayList.get(0).getMatchHometeamName() + " VS " + matchArrayList.get(0).getMatchAwayteamName() + "\n" + "Time:" + matchArrayList.get(0).getMatchDate() + "\n";
         SharedPreferences preferences = context.getSharedPreferences("match", 0);
@@ -110,11 +117,8 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         editor.putString("matchWidget", nextMatch);
         editor.apply();
 
-//            Intent intentWidget = new Intent(getBaseContext(),RecipesWidget.class);
-//            intentWidget.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         int[] ids = AppWidgetManager.getInstance(context).getAppWidgetIds(new ComponentName(context, MatchWidget.class));
-//            intentWidget.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
-//            sendBroadcast(intentWidget);
+
         MatchWidget myWidget = new MatchWidget();
         myWidget.onUpdate(context, AppWidgetManager.getInstance(context), ids);
     }
