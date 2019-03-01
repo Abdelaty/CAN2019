@@ -209,8 +209,8 @@
     <string name="possession">Possession</string>
     <string name="expanded_image">expanded image</string>
     <string name="_00_00">00:00</string>
-    <string name="score">-</string>
-    <string name="score_away">-</string>
+    <string name="score">0</string>
+    <string name="score_away">0</string>
     <string name="matches">Matches</string>
     <string name="stadiums">Stadiums</string>
     <string name="chat_with_organizers">Chat with organizers</string>
