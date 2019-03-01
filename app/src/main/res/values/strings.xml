@@ -217,4 +217,5 @@
     <string name="booking_trains">Booking Trains</string>
     <string name="send_suggestions">Send Suggestions</string>
     <string name="about_main">About</string>
+    <string name="shadow">Shadow</string>
 </resources>
