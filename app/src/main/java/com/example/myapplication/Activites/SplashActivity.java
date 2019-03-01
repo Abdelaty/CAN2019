@@ -15,7 +15,9 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+//        new BackgroundSplashTask();
         new BackgroundSplashTask().execute();
+
 
     }
 
