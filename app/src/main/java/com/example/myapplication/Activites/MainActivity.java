@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal1 = Calendar.getInstance();
-        cal1.add(Calendar.DATE, 0);
+        cal1.add(Calendar.DATE, -1);
         return dateFormat1.format(cal1.getTime());
     }
 
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
     private String getYesterdayDateString() {
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, -1);
+        cal.add(Calendar.DATE, -4);
         return dateFormat.format(cal.getTime());
     }
 

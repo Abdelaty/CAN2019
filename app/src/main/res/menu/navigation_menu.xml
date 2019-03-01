@@ -6,14 +6,14 @@
         android:icon="@drawable/ic_action_ball"
         android:title="@string/matches" />
 
-    <!--<item-->
-    <!--android:id="@+id/groups"-->
-    <!--android:icon="@drawable/ic_action_ball"-->
-    <!--android:title="Groups" />-->
-    <!--<item-->
-    <!--android:id="@+id/qualifications"-->
-    <!--android:icon="@drawable/ic_action_achievement"-->
-    <!--android:title="Qualifications" />-->
+    <item
+        android:id="@+id/groups"
+        android:icon="@drawable/ic_action_ball"
+        android:title="Groups" />
+    <item
+        android:id="@+id/qualifications"
+        android:icon="@drawable/ic_action_achievement"
+        android:title="Qualifications" />
     <item
         android:id="@+id/stadiums"
         android:icon="@drawable/ic_action_ball"
@@ -26,14 +26,14 @@
         android:id="@+id/booking"
         android:icon="@drawable/ic_train"
         android:title="@string/booking_trains" />
-    <!--<item-->
-    <!--android:id="@+id/send"-->
-    <!--android:icon="@drawable/ic_send"-->
-    <!--android:title="@string/send_suggestions" />-->
-    <!--<item-->
-    <!--android:id="@+id/settings"-->
-    <!--android:icon="@drawable/ic_action_settings"-->
-    <!--android:title="Settings" />-->
+    <item
+        android:id="@+id/send"
+        android:icon="@drawable/ic_send"
+        android:title="@string/send_suggestions" />
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_action_settings"
+        android:title="Settings" />
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_announcement"

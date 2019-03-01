@@ -57,12 +57,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("today", matchArrayList);
+
         holder.homeTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchHometeamName()).getImageId());
         holder.awayTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchAwayteamName()).getImageId());
+        //if statement
         holder.homeScore_tv.setText(matchArrayList.get(position).getMatchHometeamScore());
+        holder.awayScore_tv.setText(matchArrayList.get(position).getMatchAwayteamScore());
+
         holder.awayName_tv.setText(matchArrayList.get(position).getMatchAwayteamName());
         holder.homeName_tv.setText(matchArrayList.get(position).getMatchHometeamName());
-        holder.awayScore_tv.setText(matchArrayList.get(position).getMatchAwayteamScore());
         holder.matchTime_tv.setText(matchArrayList.get(position).getMatchTime());
         holder.statue_tv.setText(matchArrayList.get(position).getMatchStatus());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -74,14 +77,6 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
                 cardsList = (ArrayList<Object>) matchArrayList.get(position).getCards();
                 staticsList = (ArrayList<Object>) matchArrayList.get(position).getStatistics();
                 Intent intent = new Intent(context, DetailedMatch.class);
-//                Bundle args = new Bundle();
-//                args.putSerializable("homeLineupList", homeLineupList);
-//                args.putSerializable("awayLineupList", awayLineupList);
-//                args.putSerializable("goalScorerList", goalScorerList);
-//                args.putSerializable("cardsList", cardsList);
-//                args.putSerializable("staticsList", staticsList);
-//                intent.putExtra("BUNDLE", args);
-//                context.startActivity(intent);
 
                 Intent intent1 = new Intent(MatchWidget.ACTION_TEXT_CHANGED);
                 intent1.putExtra("newMatch", "Next Match: \n " + matchArrayList.get(0).getMatchHometeamName() + " VS " + matchArrayList.get(0).getMatchAwayteamName() + "\n" + "Time:" + matchArrayList.get(0).getMatchDate() + "\n");
