@@ -21,7 +21,6 @@
             android:scrollbars="none"
             app:reverseLayout="true" />
 
-
         <RelativeLayout
             android:id="@+id/main_layout"
             android:layout_width="match_parent"
