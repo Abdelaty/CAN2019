@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
         <receiver android:name=".MatchWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -23,7 +24,11 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/match_widget_info" />
         </receiver>
-
+        <!--<receiver android:name=".NetworkStateReceiver">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+        <!--</intent-filter>-->
+        <!--</receiver>-->
         <activity android:name=".Activites.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,9 +38,7 @@
         </activity>
         <activity
             android:name=".Activites.BookingActivity"
-            android:parentActivityName=".Activites.MainActivity"
-
-            />
+            android:parentActivityName=".Activites.MainActivity" />
         <activity
             android:name=".Activites.NewsActivity"
             android:label="@string/title_activity_news"
@@ -76,7 +79,7 @@
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".Activites.MainActivity"></activity>
+        <activity android:name=".Activites.MainActivity" />
     </application>
 
 </manifest>

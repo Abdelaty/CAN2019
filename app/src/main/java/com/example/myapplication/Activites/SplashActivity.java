@@ -8,7 +8,7 @@ import android.os.Bundle;
 import com.example.myapplication.R;
 
 public class SplashActivity extends Activity {
-    private static final int SPLASH_SHOW_TIME = 2000;
+    private static final int SPLASH_SHOW_TIME = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
