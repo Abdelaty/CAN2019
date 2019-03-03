@@ -61,13 +61,13 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
         holder.homeTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchHometeamName()).getImageId());
         holder.awayTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchAwayteamName()).getImageId());
         //if statement
-        if (matchArrayList.get(position).getMatchHometeamScore().equals("null")) {
-            holder.homeScore_tv.setText("0");
+        if (matchArrayList.get(position).getMatchHometeamScore().equals("")) {
+            holder.homeScore_tv.setText("-");
         } else {
             holder.homeScore_tv.setText(matchArrayList.get(position).getMatchHometeamScore());
         }
-        if (matchArrayList.get(position).getMatchAwayteamScore().equals("null")) {
-            holder.awayScore_tv.setText("0");
+        if (matchArrayList.get(position).getMatchAwayteamScore().equals("")) {
+            holder.awayScore_tv.setText("-");
         } else {
             holder.awayScore_tv.setText(matchArrayList.get(position).getMatchAwayteamScore());
         }
