@@ -6,30 +6,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.example.myapplication.R;
+import com.example.myapplication.WelcomeActivity;
 
 public class SplashActivity extends Activity {
-    private static final int SPLASH_SHOW_TIME = 2000;
+    private static final int SPLASH_SHOW_TIME = 500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
-//        new BackgroundSplashTask();
-        new BackgroundSplashTask().execute();
-
-
+        AsyncTask asyncTask = new BackgroundSplashTask().execute();
     }
 
     private class BackgroundSplashTask extends AsyncTask {
 
-        // if you want to load database, make
-        // network calls, load images
-        // you can do them here and remove the following
-        // sleep
-
-        // do not worry about this Thread.sleep
-        // this is an async task, it will not disrupt the UI
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -50,7 +40,7 @@ public class SplashActivity extends Activity {
         protected void onPostExecute(Object o) {
             super.onPostExecute(o);
             Intent i = new Intent(SplashActivity.this,
-                    MainActivity.class);
+                    WelcomeActivity.class);
             startActivity(i);
             finish();
         }

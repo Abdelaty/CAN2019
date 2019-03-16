@@ -2,9 +2,6 @@ package com.example.myapplication.Activites;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +16,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StadiumActivity extends AppCompatActivity {
+    @BindView(R.id.stadiums_rv)
     RecyclerView stadiums_rv;
+
     HorizontalAdapter stadiumAdapter;
     private List<ImageModel> imageModels;
 
@@ -28,15 +33,12 @@ public class StadiumActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_staduim);
+        ButterKnife.bind(this);
+
         setTitle(R.string.stadium_main);
 
-        stadiums_rv = findViewById(R.id.stadiums_rv);
-
         imageModels = fill_with_data();
-
-
         stadiumAdapter = new HorizontalAdapter(imageModels, getApplication());
-
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(StadiumActivity.this, LinearLayoutManager.VERTICAL, false);
         stadiums_rv.setLayoutManager(horizontalLayoutManager);
         stadiums_rv.setAdapter(stadiumAdapter);

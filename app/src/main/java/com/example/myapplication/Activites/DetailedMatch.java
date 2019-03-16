@@ -2,9 +2,10 @@ package com.example.myapplication.Activites;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.example.myapplication.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class DetailedMatch extends AppCompatActivity {
 
@@ -13,6 +14,7 @@ public class DetailedMatch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_match);
         Intent intent = getIntent();
+
         //   Bundle args = intent.getBundleExtra("BUNDLE");
 //        ArrayList<Object> homeLineupList = (ArrayList<Object>) args.getSerializable("homeLineupList");
 //        ArrayList<Object> awayLineupList = (ArrayList<Object>) args.getSerializable("awayLineupList");

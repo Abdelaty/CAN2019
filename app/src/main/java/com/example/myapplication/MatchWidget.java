@@ -6,17 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
-
-/**
- * Implementation of App Widget functionality.
- */
 public class MatchWidget extends AppWidgetProvider {
     public static final String ACTION_TEXT_CHANGED = "android.appwidget.action.APPWIDGET_UPDATE";
     private String nextMatch;
 
     void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                          int appWidgetId) {
-        // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.match_widget);
 
         SharedPreferences preferences = context.getSharedPreferences("match", 0);

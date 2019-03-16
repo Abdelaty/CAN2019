@@ -26,7 +26,18 @@
     <string name="scorer" translatable="false">scorer</string>
     <string name="goals" translatable="false">Goals</string>
     <string name="textview" translatable="false">TextView</string>
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
 
+    <string name="slide_1_title">CAN 2019</string>
+    <string name="slide_1_desc">The Official app  for Africa cup of nations.</string>
+
+    <string name="slide_2_title">Live Matches</string>
+    <string name="slide_2_desc">watch live statics and result of matches</string>
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
     <string-array name="language_option">
         <item>English</item>
         <item>Indonesian</item>
@@ -209,8 +220,8 @@
     <string name="possession">Possession</string>
     <string name="expanded_image">expanded image</string>
     <string name="_00_00">00:00</string>
-    <string name="score">0</string>
-    <string name="score_away">0</string>
+    <string name="score">-</string>
+    <string name="score_away">-</string>
     <string name="matches">Matches</string>
     <string name="stadiums">Stadiums</string>
     <string name="chat_with_organizers">Chat with organizers</string>
@@ -218,4 +229,6 @@
     <string name="send_suggestions">Send Suggestions</string>
     <string name="about_main">About</string>
     <string name="shadow">Shadow</string>
+    <string name="you_are_connected">You are connected to the Internet</string>
+    <string name="check_connection">Please check internet</string>
 </resources>

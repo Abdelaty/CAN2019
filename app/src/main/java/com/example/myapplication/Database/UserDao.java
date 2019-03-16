@@ -1,12 +1,12 @@
 package com.example.myapplication.Database;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.Query;
-import android.arch.persistence.room.RoomWarnings;
-
 import java.util.List;
+
+import androidx.room.Dao;
+import androidx.room.Delete;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.RoomWarnings;
 
 @Dao
 
@@ -20,12 +20,6 @@ public interface UserDao {
 
     @Query("SELECT COUNT(*) from teams")
     int countUsers();
-
-//    @Query("SELECT uid from teams  where teamName LIKE  :teamName")
-//    Teams getUid(String teamName);
-//
-//    @Query("SELECT teamName from teams  where uid LIKE  :uid")
-//    Teams getTeamName(int uid);
 
     @Insert
     void insertAll(Teams... teams);

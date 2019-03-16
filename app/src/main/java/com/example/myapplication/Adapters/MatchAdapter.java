@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +19,11 @@ import com.example.myapplication.POJO.Matches.Example;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import static com.example.myapplication.Database.AppDatabase.getAppDatabase;
 
@@ -60,14 +63,15 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
 
         holder.homeTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchHometeamName()).getImageId());
         holder.awayTeam_iv.setImageResource(db.userDao().getImage(matchArrayList.get(position).getMatchAwayteamName()).getImageId());
-        //if statement
-        if (matchArrayList.get(position).getMatchHometeamScore().equals("null")) {
-            holder.homeScore_tv.setText("0");
+
+        if (matchArrayList.get(position).getMatchHometeamScore().equals("")) {
+            holder.homeScore_tv.setText("-");
         } else {
             holder.homeScore_tv.setText(matchArrayList.get(position).getMatchHometeamScore());
         }
-        if (matchArrayList.get(position).getMatchAwayteamScore().equals("null")) {
-            holder.awayScore_tv.setText("0");
+
+        if (matchArrayList.get(position).getMatchAwayteamScore().equals("")) {
+            holder.awayScore_tv.setText("-");
         } else {
             holder.awayScore_tv.setText(matchArrayList.get(position).getMatchAwayteamScore());
         }
@@ -120,21 +124,33 @@ public class MatchAdapter extends RecyclerView.Adapter<MatchAdapter.MyViewHolder
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView homeScore_tv, awayName_tv, homeName_tv, awayScore_tv, matchTime_tv, statue_tv;
-        ImageView homeTeam_iv, awayTeam_iv;
+        @BindView(R.id.home_score)
+        TextView homeScore_tv;
+
+        @BindView(R.id.away_team_name)
+        TextView awayName_tv;
+
+        @BindView(R.id.home_team_name)
+        TextView homeName_tv;
+
+        @BindView(R.id.away_score)
+        TextView awayScore_tv;
+
+        @BindView(R.id.time)
+        TextView matchTime_tv;
+
+        @BindView(R.id.statue)
+        TextView statue_tv;
+
+        @BindView(R.id.home_team_img)
+        ImageView homeTeam_iv;
+
+        @BindView(R.id.away_team_img)
+        ImageView awayTeam_iv;
 
         MyViewHolder(View view) {
             super(view);
-            homeScore_tv = view.findViewById(R.id.home_score);
-            awayName_tv = view.findViewById(R.id.away_team_name);
-            homeName_tv = view.findViewById(R.id.home_team_name);
-            awayScore_tv = view.findViewById(R.id.away_score);
-            matchTime_tv = view.findViewById(R.id.time);
-            statue_tv = view.findViewById(R.id.statue);
-
-            homeTeam_iv = view.findViewById(R.id.home_team_img);
-            awayTeam_iv = view.findViewById(R.id.away_team_img);
-
+            ButterKnife.bind(this, view);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

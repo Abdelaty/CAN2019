@@ -2,8 +2,6 @@ package com.example.myapplication.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +16,11 @@ import com.example.myapplication.POJO.News.Article;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
     private NewsAdapter.OnItemClickListener mListener;
@@ -78,14 +81,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.news_title)
         TextView news_title;
+
+        @BindView(R.id.news_image)
         ImageView newsImage;
 
         MyViewHolder(View view) {
             super(view);
-//            step_name = view.findViewById(R.id.item_rv);
-            news_title = view.findViewById(R.id.news_title);
-            newsImage = view.findViewById(R.id.news_image);
+            ButterKnife.bind(this, view);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

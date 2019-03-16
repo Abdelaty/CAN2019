@@ -3,7 +3,6 @@ package com.example.myapplication;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,9 +22,18 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class Users extends AppCompatActivity {
+
+    @BindView(R.id.usersList)
     ListView usersList;
+
+    @BindView(R.id.noUsersText)
     TextView noUsersText;
+
     ArrayList<String> al = new ArrayList<>();
     int totalUsers = 0;
     ProgressDialog pd;
@@ -34,10 +42,9 @@ public class Users extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_users);
-        setTitle(R.string.organ_main);
+        ButterKnife.bind(this);
 
-        usersList = findViewById(R.id.usersList);
-        noUsersText = findViewById(R.id.noUsersText);
+        setTitle(R.string.organ_main);
         pd = new ProgressDialog(Users.this);
         pd.setMessage(getString(R.string.loading));
         pd.show();

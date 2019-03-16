@@ -1,19 +1,15 @@
 package com.example.myapplication.Activites;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.myapplication.Adapters.MatchAdapter;
@@ -31,6 +27,8 @@ import com.example.myapplication.POJO.News.NewsExample;
 import com.example.myapplication.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -39,6 +37,15 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -55,16 +62,30 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Example> matchesArrayList;
     ArrayList<Article> articleArrayList;
     MatchAdapter matchAdapter;
+
     ViewPager viewPager;
-    private AdView mBannerAd;
-    private RecyclerView newsList_rv, matchList_rv;
+
+    @BindView(R.id.activity_main)
+    DrawerLayout dl;
+
+    @BindView(R.id.banner_AdView)
+    AdView mBannerAd;
+
+    @BindView(R.id.news_rv)
+    RecyclerView newsList_rv;
+
+    @BindView(R.id.match_results_today_rv)
+    RecyclerView matchList_rv;
+
     private ActionBarDrawerToggle t;
+    View parentLayout;
+
 
     public static String getDate() {
 
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal1 = Calendar.getInstance();
-        cal1.add(Calendar.DATE, -1);
+        cal1.add(Calendar.DATE, +1);
         return dateFormat1.format(cal1.getTime());
     }
 
@@ -76,38 +97,34 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         AppDatabase db = getAppDatabase(this);
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mBannerAd = findViewById(R.id.banner_AdView);
-        newsList_rv = findViewById(R.id.news_rv);
-        matchList_rv = findViewById(R.id.match_results_today_rv);
+        ButterKnife.bind(this);
+
         showBannerAd();
         fromDate = getYesterdayDateString();
-
+        t = new ActionBarDrawerToggle(this, dl, R.string.drawer_open, R.string.drawer_close);
         toDate = getDate();
-
+        parentLayout = findViewById(R.id.activity_main);
 
         setTitle(R.string.main_title);
-        DrawerLayout dl = findViewById(R.id.activity_main);
-        viewPager = findViewById(R.id.item_rv);
+
         t = new ActionBarDrawerToggle(this, dl, R.string.drawer_open, R.string.drawer_close);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         }
-        newsList_rv = findViewById(R.id.news_rv);
-        matchList_rv = findViewById(R.id.match_results_today_rv);
         if (db.userDao().countUsers() == 0) {
             populateWithTestData(db);
 
         }
         dl.addDrawerListener(t);
+        viewPager = findViewById(R.id.item_rv);
         t.syncState();
         NavigationView nv = findViewById(R.id.nv);
-//        Log.v("take", getClass().getSimpleName());
-        generateNewsNetworkCall();
 
+        generateNewsNetworkCall();
         generateNetworkCall();
+
         nv.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -174,7 +191,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
+        checkConnection();
     }
 
     @Override
@@ -194,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
     private String getYesterdayDateString() {
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.DATE, -4);
+        cal.add(Calendar.DATE, -1);
         return dateFormat.format(cal.getTime());
     }
 
@@ -210,7 +227,7 @@ public class MainActivity extends AppCompatActivity {
 
         matchAdapter = new MatchAdapter(matchesArrayList, this);
         final LinearLayoutManager MatchesLayoutManager = new LinearLayoutManager(getApplicationContext());
-        MatchesLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        MatchesLayoutManager.setOrientation(RecyclerView.VERTICAL);
         matchList_rv.setLayoutManager(MatchesLayoutManager);
         matchList_rv.setAdapter(matchAdapter);
     }
@@ -371,5 +388,37 @@ public class MainActivity extends AppCompatActivity {
         ipswich_town.setTeamName(getString(R.string.team24));
         ipswich_town.setImageId(R.drawable.ipswich_town);
         addTeam(db, ipswich_town);
+    }
+
+    public void checkConnection() {
+
+        if (isNetworkAvailable()) {
+            Snackbar snackbar = Snackbar
+                    .make(parentLayout,
+                            R.string.you_are_connected,
+                            Snackbar.LENGTH_LONG);
+            snackbar.show();
+        } else {
+
+            Snackbar snackbar = Snackbar
+                    .make(parentLayout,
+                            R.string.check_connection,
+                            Snackbar.LENGTH_LONG);
+            snackbar.show();
+
+        }
+
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = null;
+        if (connectivityManager != null) {
+            activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        }
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+
+
     }
 }

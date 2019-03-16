@@ -1,23 +1,13 @@
 package com.example.myapplication.Database;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "teams")
 
 public class Teams {
-//    public int getUid() {
-//        return uid;
-//    }
-//
-//    public void setUid(int uid) {
-//        this.uid = uid;
-//    }
-
-    //    @PrimaryKey(autoGenerate = true)
-//    private int uid;
     @NonNull
     @PrimaryKey
     @ColumnInfo(name = "teamName")

@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -23,13 +22,27 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class Chat extends AppCompatActivity {
+    @BindView(R.id.layout1)
     LinearLayout layout;
+
+    @BindView(R.id.layout2)
     RelativeLayout layout_2;
+
+    @BindView(R.id.sendButton)
     ImageView sendButton;
+
+    @BindView(R.id.messageArea)
     EditText messageArea;
+
+    @BindView(R.id.scrollView)
     ScrollView scrollView;
+
     Firebase reference1, reference2;
     SimpleDateFormat sdf;
 
@@ -37,14 +50,11 @@ public class Chat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        ButterKnife.bind(this);
+
         setTitle(R.string.chat_main);
 
         sdf = new SimpleDateFormat("EEE, MMM d 'AT' HH:mm a");
-        layout = findViewById(R.id.layout1);
-        layout_2 = findViewById(R.id.layout2);
-        sendButton = findViewById(R.id.sendButton);
-        messageArea = findViewById(R.id.messageArea);
-        scrollView = findViewById(R.id.scrollView);
         scrollView.fullScroll(View.FOCUS_DOWN);
         Firebase.setAndroidContext(this);
         reference1 = new Firebase("https://can2019-2b45d.firebaseio.com/messages/" + UserDetails.username + "_" + UserDetails.chatWith);
